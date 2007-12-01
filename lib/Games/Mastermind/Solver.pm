@@ -122,14 +122,15 @@ sub all_codes {
         my $len = 1 + shift;
 
         if ($len == $holes) {
-            $possibilities{$p . $_} = 1 for @pegs;
+            $possibilities->{$p . $_} = 1 for @pegs;
         }
         else {
-            $recurse->($p . $_, $len) for @pegs;
+            $generate->($p . $_, $len) for @pegs;
         }
     };
 
-    $recurse->('', 0);
+    # start this baby off
+    $generate->('', 0);
 
     return $possibilities;
 }
