@@ -104,6 +104,33 @@ sub random_peg {
     return $self->pegs->[rand @{$self->pegs}];
 }
 
+sub all_codes {
+    my $self = shift;
+
+    my $possibilities = {};
+
+    my @pegs  = @{ $self->pegs };
+    my $holes = $self->holes;
+
+    # generate all holes-length permutations of @pegs recursively
+    my $generate;
+    $generate = sub {
+        my $p = shift;
+        my $len = 1 + shift;
+
+        if ($len == $holes) {
+            $possibilities{$p . $_} = 1 for @pegs;
+        }
+        else {
+            $recurse->($p . $_, $len) for @pegs;
+        }
+    };
+
+    $recurse->('', 0);
+
+    return $possibilities;
+}
+
 =head1 NAME
 
 Games::Mastermind::Solver - quickly solve Mastermind
@@ -232,6 +259,11 @@ yet.
 =head3 random_peg
 
 This returns a peg randomly selected from valid pegs.
+
+=head3 all_codes
+
+This returns a hash reference of all possible codes. This is not cached in any
+way, so each call is a large speed penalty.
 
 =head1 SEE ALSO
 
