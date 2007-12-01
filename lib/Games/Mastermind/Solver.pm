@@ -190,7 +190,7 @@ Games::Mastermind::Solver - quickly solve Mastermind
 
 =head1 VERSION
 
-Version 0.01 released ???
+Version 0.01 released 01 Dec 07
 
 =cut
 
