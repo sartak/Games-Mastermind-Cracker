@@ -138,19 +138,17 @@ L<Games::Mastermind> is the same game, except it plays the role of code maker.
 
 =head1 ALGORITHMS
 
-=over 4
+Here are the algorithms, in roughly increasing order of quality.
 
-=item L<Games::Mastermind::Solver::Random>
+=head2 L<Games::Mastermind::Solver::Random>
 
 This randomly guesses until it gets the right answer. It does not attempt to
 avoid guessing the same code twice.
 
-=item L<Games::Mastermind::Solver::Sequential>
+=head2 L<Games::Mastermind::Solver::Sequential>
 
 This guesses each code in order until it gets the right answer. It uses no
 information from the results to prepare its next guesses.
-
-=back
 
 =head1 USAGE
 
@@ -200,6 +198,14 @@ white pegs, and its black pegs.
 =head1 SUBCLASSING
 
 This module uses L<Moose> so please use it to extend this module. C<:)>
+
+Your solver should operate such that any update to its internal state is caused
+by C<result_of>, not C<make_guess>. This is because your C<result_of> method
+may be called (multiple times) before C<make_guess> is first called.
+
+If you absolutely have to entangle your guessing and result processing code,
+one way to make this work is to have C<result_of> do all the calculation and
+store the next guess to make in an attribute.
 
 =head2 REQUIRED METHODS
 
