@@ -5,7 +5,7 @@ use inc::Module::Install;
 name           'Games-Mastermind-Solver';
 all_from       'lib/Games/Mastermind/Solver.pm';
 
-requires       '';
+requires       'Moose';
 
 build_requires 'Test::More';
 
