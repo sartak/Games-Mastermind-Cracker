@@ -24,6 +24,7 @@ has get_result => (
     is      => 'rw',
     isa     => 'CodeRef',
     default => sub { sub {
+        my $self = shift;
         my $guess = shift;
         print "Guessing $guess. How many black and white pegs? ";
         local $_ = <>;
@@ -39,7 +40,7 @@ sub play {
 
     do {
         do {
-            ($black, $white) = $self->get_result->($guess);
+            ($black, $white) = $self->get_result->($self, $guess);
         }
         until defined $black && defined $white;
     }
@@ -199,10 +200,10 @@ The representations of the pegs. Default: 'K', 'B', 'G', 'R', 'Y', 'W'.
 =head3 C<get_result>
 
 A coderef to call any time the module wants user input. It passes the coderef
-the string of the guess (e.g. C<KRBK>) and expects to receive two numbers,
-C<black pegs> and C<white pegs>, as return value. I will call this method
-multiple times if necessary to get sane output, so you don't need to do much
-processing.
+C<$self> and the string of the guess (e.g. C<KRBK>) and expects to receive two
+numbers, C<black pegs> and C<white pegs>, as return value. I will call this
+method multiple times if necessary to get sane output, so you don't need to do
+much processing.
 
 The default queries the user through standard output and standard input.
 
