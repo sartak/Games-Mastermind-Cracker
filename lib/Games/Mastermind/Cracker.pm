@@ -336,7 +336,7 @@ so you could say the second against the first C<:)>).
 
 =head1 SEE ALSO
 
-L<Games::Mastermind>, L<http://sartak.katron.org/nh/mastermind>
+L<Games::Mastermind>, L<Games::Mastermind::Solver>, L<http://sartak.katron.org/nh/mastermind>
 
 =head1 AUTHOR
 

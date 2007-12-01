@@ -124,7 +124,8 @@ SUBCLASSING
     associative, so you could say the second against the first ":)").
 
 SEE ALSO
-    Games::Mastermind, <http://sartak.katron.org/nh/mastermind>
+    Games::Mastermind, Games::Mastermind::Solver,
+    <http://sartak.katron.org/nh/mastermind>
 
 AUTHOR
     Shawn M Moore, "<sartak at gmail.com>"
