@@ -28,6 +28,12 @@ has get_result => (
         my $guess = shift;
         print "Guessing $guess. How many black and white pegs? ";
         local $_ = <>;
+
+        # if < 10 holes, then no separator necessary
+        if ($self->holes < 10) {
+            return /(\d).*?(\d)/;
+        }
+
         return /(\d+)\D+(\d+)/;
     }},
 );
