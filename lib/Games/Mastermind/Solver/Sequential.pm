@@ -40,5 +40,11 @@ sub increment_guess {
     return join '', map { $self->pegs->[$_-1] } @guess;
 }
 
+=head1 NAME
+
+Games::Mastermind::Solver::Sequential - guess every code in order
+
+=cut
+
 1;
 
