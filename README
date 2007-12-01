@@ -2,7 +2,7 @@ NAME
     Games::Mastermind::Cracker - quickly crack Mastermind
 
 VERSION
-    Version 0.01 released 01 Dec 07
+    Version 0.02 released 01 Dec 07
 
 SYNOPSIS
         use Games::Mastermind::Cracker::Sequential;
