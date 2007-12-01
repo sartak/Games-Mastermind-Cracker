@@ -58,12 +58,12 @@ sub solve {
         # no solution found
         return undef if !defined($guess);
 
-        push @{ $self->history }, $guess;
-
         my ($white, $black) = $self->play($guess);
 
         return $guess
             if $white == $self->holes;
+
+        push @{ $self->history }, [$guess, $white, $black];
 
         $self->result_of($guess, $white, $black);
     }
@@ -95,7 +95,7 @@ sub make_guess {
 sub last_guess {
     my $self = shift;
 
-    $self->history->[-1];
+    $self->history->[-1][0];
 }
 
 sub random_peg {
@@ -194,6 +194,8 @@ This will return an array reference of the pegs used in the game.
 =head2 C<history>
 
 This will return an array reference of the guesses made so far in the game.
+Each item in C<history> is an array refrence itself, containing the guess, its
+white pegs, and its black pegs.
 
 =head1 SUBCLASSING
 
