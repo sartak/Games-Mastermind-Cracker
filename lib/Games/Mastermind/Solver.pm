@@ -153,6 +153,8 @@ sub score {
     my $black = 0;
     my $white = 0;
 
+    no warnings 'uninitialized';
+
     # code stolen from Games::Mastermind
 
     # black marks
