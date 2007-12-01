@@ -8,6 +8,7 @@ all_from       'lib/Games/Mastermind/Solver.pm';
 requires       'Moose';
 
 build_requires 'Test::More';
+build_requires 'Test::Exception';
 
 auto_install;
 WriteAll;
