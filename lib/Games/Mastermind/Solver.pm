@@ -145,6 +145,43 @@ sub all_codes {
     return $possibilities;
 }
 
+sub score {
+    my $self  = shift;
+    my @guess = split '', shift;
+    my @code  = split '', shift;
+
+    my $black = 0;
+    my $white = 0;
+
+    # code stolen from Games::Mastermind
+
+    # black marks
+    for my $i (0 .. @code - 1) {
+        if ($guess[$i] eq $code[$i]) {
+            ++$black;
+            $guess[$i] = $code[$i] = undef;
+        }
+    }
+
+    # white marks
+    @guess = sort grep { defined } @guess;
+    @code  = sort grep { defined } @code;
+
+    while (@guess && @code) {
+        if ($guess[0] eq $code[0]) {
+            $white++;
+            shift @guess;
+            shift @code;
+        }
+        else {
+            if ($guess[0] lt $code[0]) { shift @guess }
+            else                       { shift @code  }
+        }
+    }
+
+    return ($black, $white);
+}
+
 =head1 NAME
 
 Games::Mastermind::Solver - quickly solve Mastermind
@@ -279,6 +316,12 @@ This returns a peg randomly selected from valid pegs.
 
 This returns a hash reference of all possible codes. This is not cached in any
 way, so each call is a large speed penalty.
+
+=head3 score
+
+This expects two codes. It will return the black and white marker count as if
+the first is a guess against the second. (actually, this method is associative,
+so you could say the second against the first C<:)>).
 
 =head1 SEE ALSO
 
