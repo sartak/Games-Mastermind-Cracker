@@ -38,7 +38,7 @@ around make_guess => sub {
     }
 
     $orig->(@_);
-}
+};
 
 1;
 
