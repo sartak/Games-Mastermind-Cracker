@@ -25,7 +25,7 @@ has get_result => (
     isa     => 'CodeRef',
     default => sub { sub {
         my $guess = shift;
-        print "Guessing $guess. How many white and black pegs? ";
+        print "Guessing $guess. How many black and white pegs? ";
         local $_ = <>;
         return /(\d+)\D+(\d+)/;
     }},
@@ -35,17 +35,17 @@ has get_result => (
 sub play {
     my $self  = shift;
     my $guess = shift;
-    my ($white, $black);
+    my ($black, $white);
 
     do {
         do {
-            ($white, $black) = $self->get_result->($guess);
+            ($black, $white) = $self->get_result->($guess);
         }
-        until defined $white && defined $black;
+        until defined $black && defined $white;
     }
-    until $white + $black <= $self->holes;
+    until $black + $white <= $self->holes;
 
-    return ($white, $black);
+    return ($black, $white);
 }
 
 # go from zero to solution
@@ -58,14 +58,14 @@ sub solve {
         # no solution found
         return undef if !defined($guess);
 
-        my ($white, $black) = $self->play($guess);
+        my ($black, $white) = $self->play($guess);
 
         return $guess
-            if $white == $self->holes;
+            if $black == $self->holes;
 
-        push @{ $self->history }, [$guess, $white, $black];
+        push @{ $self->history }, [$guess, $black, $white];
 
-        $self->result_of($guess, $white, $black);
+        $self->result_of($guess, $black, $white);
     }
 }
 
@@ -155,7 +155,7 @@ Mastermind is a code-breaking game played by two players, the "code maker" and
 the "code breaker".
 
 This module plays the role of code breaker. The only requirement is that you
-provide the answers to how many white pegs and how many black pegs a code
+provide the answers to how many black pegs and how many white pegs a code
 gives.
 
 You must instantiate a subclass of this module to actually break codes. There
@@ -196,7 +196,7 @@ The representations of the pegs. Default: 'K', 'B', 'G', 'R', 'Y', 'W'.
 
 A coderef to call any time the module wants user input. It passes the coderef
 the string of the guess (e.g. C<KRBK>) and expects to receive two numbers,
-C<white pegs> and C<black pegs>, as return value. I will call this method
+C<black pegs> and C<white pegs>, as return value. I will call this method
 multiple times if necessary to get sane output, so you don't need to do much
 processing.
 
@@ -220,7 +220,7 @@ This will return an array reference of the pegs used in the game.
 
 This will return an array reference of the guesses made so far in the game.
 Each item in C<history> is an array refrence itself, containing the guess, its
-white pegs, and its black pegs.
+black pegs, and its white pegs.
 
 =head1 SUBCLASSING
 
@@ -246,8 +246,8 @@ interpreted as "unable to solve this code."
 
 =head3 result_of
 
-This method will receive three arguments: the guess made, the number of white
-pegs, and the number of black pegs. It doesn't have to return anything.
+This method will receive three arguments: the guess made, the number of black
+pegs, and the number of white pegs. It doesn't have to return anything.
 
 =head2 HELPER METHODS
 
