@@ -228,6 +228,15 @@ avoid guessing the same code twice.
 This guesses each code in order until it gets the right answer. It uses no
 information from the results to prepare its next guesses.
 
+=head2 L<Games::Mastermind::Solver::Basic>
+
+This is the first usable algorithm. It will keep track of all the possible
+codes. When a result is known, it will go through the possible codes and
+eliminate any result inconsistent with the result. For example, C<BBBB> is not
+a possible result when C<WKYW> is guessed and receives a result of 1 black.
+This is because C<WKYW> would not score 1 black if the correct code is
+C<BBBB>.
+
 =head1 USAGE
 
 =head2 C<new>
