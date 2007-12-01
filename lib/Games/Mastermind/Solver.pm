@@ -65,6 +65,9 @@ sub solve {
         # no solution found
         return undef if !defined($guess);
 
+        # solution found
+        return $$guess if ref($guess);
+
         my ($black, $white) = $self->play($guess);
 
         return $guess
@@ -251,7 +254,8 @@ store the next guess to make in an attribute.
 
 This method will receive no arguments, and expects a string representing the
 guessed code as a result. If your C<make_guess> returns C<undef>, that will be
-interpreted as "unable to solve this code."
+interpreted as "unable to solve this code." If your C<make_guess> returns a
+scalar reference, that will be interpreted as the correct solution.
 
 =head2 OPTIONAL METHODS
 
