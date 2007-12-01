@@ -1,0 +1,14 @@
+# Load the Module::Install bundled in ./inc/
+use inc::Module::Install;
+
+# Define metadata
+name           'Games-Mastermind-Solver';
+all_from       'lib/Games/Mastermind/Solver.pm';
+
+requires       '';
+
+build_requires 'Test::More';
+
+auto_install;
+WriteAll;
+
