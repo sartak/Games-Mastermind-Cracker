@@ -10,7 +10,14 @@ sub make_guess {
     return $self->pegs->[0] x $self->holes
         if !defined($last_guess);
 
-    return $self->increment_guess($last_guess);
+    my $guess = $self->increment_guess($last_guess);
+
+    # if it's the final possibility, then yes, damnit.
+    if ($guess eq $self->pegs->[-1] x $self->holes) {
+        return \$guess;
+    }
+
+    return $guess;
 }
 
 sub increment_guess {
