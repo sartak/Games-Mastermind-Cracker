@@ -95,7 +95,10 @@ sub make_guess {
 sub last_guess {
     my $self = shift;
 
-    $self->history->[-1][0];
+    my $last = $self->history->[-1];
+
+    return undef if !defined($last);
+    return $last->[0];
 }
 
 sub random_peg {
