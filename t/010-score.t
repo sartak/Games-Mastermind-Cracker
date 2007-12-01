@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 use Test::More tests => 102;
-use Games::Mastermind::Solver;
+use Games::Mastermind::Cracker;
 
 sub score_is {
     local $Test::Builder::Level = $Test::Builder::Level + 1;
@@ -12,7 +12,7 @@ sub score_is {
     my $black = shift;
     my $white = shift;
 
-    my ($b, $w) = Games::Mastermind::Solver->score($guess, $code);
+    my ($b, $w) = Games::Mastermind::Cracker->score($guess, $code);
 
     is($b, $black, "Black (correct)   is $black for '$guess' vs '$code'");
     is($w, $white, "White (misplaced) is $white for '$guess' vs '$code'");

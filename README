@@ -1,13 +1,13 @@
 NAME
-    Games::Mastermind::Solver - quickly solve Mastermind
+    Games::Mastermind::Cracker - quickly crack Mastermind
 
 VERSION
     Version 0.01 released 01 Dec 07
 
 SYNOPSIS
-        use Games::Mastermind::Solver::Sequential;
-        my $solver = Games::Mastermind::Solver::Sequential->new();
-        printf "The solution is %s!\n", $solver->solve;
+        use Games::Mastermind::Cracker::Sequential;
+        my $cracker = Games::Mastermind::Cracker::Sequential->new();
+        printf "The solution is %s!\n", $cracker->cracker;
 
 DESCRIPTION
     Mastermind is a code-breaking game played by two players, the "code
@@ -18,7 +18,7 @@ DESCRIPTION
     code gives.
 
     You must instantiate a subclass of this module to actually break codes.
-    There are a number of different solver modules, described in
+    There are a number of different cracker modules, described in
     "ALGORITHMS".
 
     Games::Mastermind is the same game, except it plays the role of code
@@ -27,15 +27,15 @@ DESCRIPTION
 ALGORITHMS
     Here are the algorithms, in roughly increasing order of quality.
 
-  Games::Mastermind::Solver::Random
+  Games::Mastermind::Cracker::Random
     This randomly guesses until it gets the right answer. It does not
     attempt to avoid guessing the same code twice.
 
-  Games::Mastermind::Solver::Sequential
+  Games::Mastermind::Cracker::Sequential
     This guesses each code in order until it gets the right answer. It uses
     no information from the results to prepare its next guesses.
 
-  Games::Mastermind::Solver::Basic
+  Games::Mastermind::Cracker::Basic
     This is the first usable algorithm. It will keep track of all the
     possible codes. When a result is known, it will go through the possible
     codes and eliminate any result inconsistent with the result. For
@@ -45,7 +45,7 @@ ALGORITHMS
 
 USAGE
   "new"
-    Creates a new Games::Mastermind::Solver::* object. Note that you MUST
+    Creates a new Games::Mastermind::Cracker::* object. Note that you MUST
     instantiate a subclass of this module. "new" takes a number of
     arguments:
 
@@ -64,8 +64,8 @@ USAGE
 
     The default queries the user through standard output and standard input.
 
-  "solve"
-    The method to call to solve a particular game of Mastermind. This takes
+  "crack"
+    The method to call to crack a particular game of Mastermind. This takes
     no arguments. It returns the solution as a string, or "undef" if no
     solution could be found.
 
@@ -83,8 +83,8 @@ USAGE
 SUBCLASSING
     This module uses Moose so please use it to extend this module. ":)"
 
-    Your solver should operate such that any update to its internal state is
-    caused by "result_of", not "make_guess". This is because your
+    Your cracker should operate such that any update to its internal state
+    is caused by "result_of", not "make_guess". This is because your
     "result_of" method may be called (multiple times) before "make_guess" is
     first called.
 
@@ -96,7 +96,7 @@ SUBCLASSING
    make_guess
     This method will receive no arguments, and expects a string representing
     the guessed code as a result. If your "make_guess" returns "undef", that
-    will be interpreted as "unable to solve this code." If your "make_guess"
+    will be interpreted as "unable to crack this code." If your "make_guess"
     returns a scalar reference, that will be interpreted as the correct
     solution.
 
@@ -132,30 +132,30 @@ AUTHOR
 BUGS
     No known bugs.
 
-    Please report any bugs through RT: email "bug-games-mastermind-solver at
-    rt.cpan.org", or browse
-    <http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Games-Mastermind-Solver>
-    .
+    Please report any bugs through RT: email "bug-games-mastermind-cracker
+    at rt.cpan.org", or browse
+    <http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Games-Mastermind-Cracker
+    >.
 
 SUPPORT
     You can find this documentation for this module with the perldoc
     command.
 
-        perldoc Games::Mastermind::Solver
+        perldoc Games::Mastermind::Cracker
 
     You can also look for information at:
 
     * AnnoCPAN: Annotated CPAN documentation
-        <http://annocpan.org/dist/Games-Mastermind-Solver>
+        <http://annocpan.org/dist/Games-Mastermind-Cracker>
 
     * CPAN Ratings
-        <http://cpanratings.perl.org/d/Games-Mastermind-Solver>
+        <http://cpanratings.perl.org/d/Games-Mastermind-Cracker>
 
     * RT: CPAN's request tracker
-        <http://rt.cpan.org/NoAuth/Bugs.html?Dist=Games-Mastermind-Solver>
+        <http://rt.cpan.org/NoAuth/Bugs.html?Dist=Games-Mastermind-Cracker>
 
     * Search CPAN
-        <http://search.cpan.org/dist/Games-Mastermind-Solver>
+        <http://search.cpan.org/dist/Games-Mastermind-Cracker>
 
 COPYRIGHT AND LICENSE
     Copyright 2007 Shawn M Moore.

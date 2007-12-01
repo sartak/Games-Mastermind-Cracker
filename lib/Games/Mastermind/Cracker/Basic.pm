@@ -1,9 +1,9 @@
 #!/usr/bin/env perl
-package Games::Mastermind::Solver::Basic;
+package Games::Mastermind::Cracker::Basic;
 use Moose;
 
-extends 'Games::Mastermind::Solver';
-with 'Games::Mastermind::Solver::Role::Elimination';
+extends 'Games::Mastermind::Cracker';
+with 'Games::Mastermind::Cracker::Role::Elimination';
 
 sub make_guess {
     my $self = shift;
@@ -19,7 +19,7 @@ sub result_of { }
 
 =head1 NAME
 
-Games::Mastermind::Solver::Basic - guess arbitrary possible codes
+Games::Mastermind::Cracker::Basic - guess arbitrary possible codes
 
 =cut
 

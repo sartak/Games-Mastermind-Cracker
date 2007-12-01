@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 use Test::More tests => 2;
-use Games::Mastermind::Solver::Sequential;
+use Games::Mastermind::Cracker::Sequential;
 
 # correct tune: ABA
 my %results = (
@@ -19,12 +19,12 @@ my %results = (
 my @expected_guesses = qw/AAA AAB ABA/;
 my @guesses;
 
-my $gmsr = Games::Mastermind::Solver::Sequential->new(
+my $gmcr = Games::Mastermind::Cracker::Sequential->new(
     get_result => sub { push @guesses, pop; @{ $results{$guesses[-1]} } },
     holes      => 3,
     pegs       => [qw/A B/],
 );
 
-is($gmsr->solve, "ABA", "ABA solution found.");
+is($gmcr->crack, "ABA", "ABA solution found.");
 is_deeply(\@guesses, \@expected_guesses, "Guesses were sequential, and stopped when the solution was found.");
 

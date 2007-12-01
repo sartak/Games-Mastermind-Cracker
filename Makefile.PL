@@ -2,8 +2,8 @@
 use inc::Module::Install;
 
 # Define metadata
-name           'Games-Mastermind-Solver';
-all_from       'lib/Games/Mastermind/Solver.pm';
+name           'Games-Mastermind-Cracker';
+all_from       'lib/Games/Mastermind/Cracker.pm';
 
 requires       'Moose';
 

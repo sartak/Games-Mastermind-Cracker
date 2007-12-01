@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 use Test::More tests => 1;
-use Games::Mastermind::Solver::Random;
+use Games::Mastermind::Cracker::Random;
 
 # correct tune: ABA
 my %results = (
@@ -16,11 +16,11 @@ my %results = (
     BBB => [1, 0],
 );
 
-my $gmsr = Games::Mastermind::Solver::Random->new(
+my $gmcr = Games::Mastermind::Cracker::Random->new(
     get_result => sub { @{ $results{+pop} } },
     holes      => 3,
     pegs       => [qw/A B/],
 );
 
-is($gmsr->solve, "ABA", "ABA solution found.");
+is($gmcr->crack, "ABA", "ABA solution found.");
 

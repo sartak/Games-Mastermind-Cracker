@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
-package Games::Mastermind::Solver::Random;
+package Games::Mastermind::Cracker::Random;
 use Moose;
-extends 'Games::Mastermind::Solver';
+extends 'Games::Mastermind::Cracker';
 
 sub make_guess {
     my $self = shift;
@@ -10,7 +10,7 @@ sub make_guess {
 
 =head1 NAME
 
-Games::Mastermind::Solver::Random - make completely random guesses
+Games::Mastermind::Cracker::Random - make completely random guesses
 
 =cut
 

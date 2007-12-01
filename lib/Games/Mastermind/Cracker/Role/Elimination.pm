@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-package Games::Mastermind::Solver::Role::Elimination;
+package Games::Mastermind::Cracker::Role::Elimination;
 use Moose::Role;
 
 has possibilities => (

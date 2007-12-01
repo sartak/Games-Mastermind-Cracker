@@ -1,5 +1,5 @@
 #!perl
-package Games::Mastermind::Solver;
+package Games::Mastermind::Cracker;
 use Moose;
 
 has holes => (
@@ -56,7 +56,7 @@ sub play {
 }
 
 # go from zero to solution
-sub solve {
+sub crack {
     my $self = shift;
 
     while (1) {
@@ -85,17 +85,17 @@ around new => sub {
     my $class = shift;
     $class = blessed($class) || $class;
 
-    if ($class eq 'Games::Mastermind::Solver') {
-        confess "You must choose a subclass of Games::Mastermind::Solver. I recommend Games::Mastermind::Solver::Sequential.";
+    if ($class eq 'Games::Mastermind::Cracker') {
+        confess "You must choose a subclass of Games::Mastermind::Cracker. I recommend Games::Mastermind::Cracker::Sequential.";
     }
 
     $orig->($class, @_);
 };
 
-# callback to let the solver module know how he did
+# callback to let the cracker module know how he did
 sub result_of { }
 
-# the meat of the solver modules
+# the meat of the cracker modules
 sub make_guess {
     confess "Your subclass must override make_guess.";
 }
@@ -186,7 +186,7 @@ sub score {
 
 =head1 NAME
 
-Games::Mastermind::Solver - quickly solve Mastermind
+Games::Mastermind::Cracker - quickly crack Mastermind
 
 =head1 VERSION
 
@@ -198,9 +198,9 @@ our $VERSION = '0.01';
 
 =head1 SYNOPSIS
 
-    use Games::Mastermind::Solver::Sequential;
-    my $solver = Games::Mastermind::Solver::Sequential->new();
-    printf "The solution is %s!\n", $solver->solve;
+    use Games::Mastermind::Cracker::Sequential;
+    my $cracker = Games::Mastermind::Cracker::Sequential->new();
+    printf "The solution is %s!\n", $cracker->cracker;
 
 =head1 DESCRIPTION
 
@@ -212,7 +212,7 @@ provide the answers to how many black pegs and how many white pegs a code
 gives.
 
 You must instantiate a subclass of this module to actually break codes. There
-are a number of different solver modules, described in L</ALGORITHMS>.
+are a number of different cracker modules, described in L</ALGORITHMS>.
 
 L<Games::Mastermind> is the same game, except it plays the role of code maker.
 
@@ -220,17 +220,17 @@ L<Games::Mastermind> is the same game, except it plays the role of code maker.
 
 Here are the algorithms, in roughly increasing order of quality.
 
-=head2 L<Games::Mastermind::Solver::Random>
+=head2 L<Games::Mastermind::Cracker::Random>
 
 This randomly guesses until it gets the right answer. It does not attempt to
 avoid guessing the same code twice.
 
-=head2 L<Games::Mastermind::Solver::Sequential>
+=head2 L<Games::Mastermind::Cracker::Sequential>
 
 This guesses each code in order until it gets the right answer. It uses no
 information from the results to prepare its next guesses.
 
-=head2 L<Games::Mastermind::Solver::Basic>
+=head2 L<Games::Mastermind::Cracker::Basic>
 
 This is the first usable algorithm. It will keep track of all the possible
 codes. When a result is known, it will go through the possible codes and
@@ -243,7 +243,7 @@ C<BBBB>.
 
 =head2 C<new>
 
-Creates a new L<Games::Mastermind::Solver::*> object. Note that you MUST
+Creates a new L<Games::Mastermind::Cracker::*> object. Note that you MUST
 instantiate a subclass of this module. C<new> takes a number of arguments:
 
 =head3 C<holes>
@@ -264,9 +264,9 @@ much processing.
 
 The default queries the user through standard output and standard input.
 
-=head2 C<solve>
+=head2 C<crack>
 
-The method to call to solve a particular game of Mastermind. This takes no
+The method to call to crack a particular game of Mastermind. This takes no
 arguments. It returns the solution as a string, or C<undef> if no solution
 could be found.
 
@@ -288,7 +288,7 @@ black pegs, and its white pegs.
 
 This module uses L<Moose> so please use it to extend this module. C<:)>
 
-Your solver should operate such that any update to its internal state is caused
+Your cracker should operate such that any update to its internal state is caused
 by C<result_of>, not C<make_guess>. This is because your C<result_of> method
 may be called (multiple times) before C<make_guess> is first called.
 
@@ -302,7 +302,7 @@ store the next guess to make in an attribute.
 
 This method will receive no arguments, and expects a string representing the
 guessed code as a result. If your C<make_guess> returns C<undef>, that will be
-interpreted as "unable to solve this code." If your C<make_guess> returns a
+interpreted as "unable to crack this code." If your C<make_guess> returns a
 scalar reference, that will be interpreted as the correct solution.
 
 =head2 OPTIONAL METHODS
@@ -347,14 +347,14 @@ Shawn M Moore, C<< <sartak at gmail.com> >>
 No known bugs.
 
 Please report any bugs through RT: email
-C<bug-games-mastermind-solver at rt.cpan.org>, or browse
-L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Games-Mastermind-Solver>.
+C<bug-games-mastermind-cracker at rt.cpan.org>, or browse
+L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Games-Mastermind-Cracker>.
 
 =head1 SUPPORT
 
 You can find this documentation for this module with the perldoc command.
 
-    perldoc Games::Mastermind::Solver
+    perldoc Games::Mastermind::Cracker
 
 You can also look for information at:
 
@@ -362,19 +362,19 @@ You can also look for information at:
 
 =item * AnnoCPAN: Annotated CPAN documentation
 
-L<http://annocpan.org/dist/Games-Mastermind-Solver>
+L<http://annocpan.org/dist/Games-Mastermind-Cracker>
 
 =item * CPAN Ratings
 
-L<http://cpanratings.perl.org/d/Games-Mastermind-Solver>
+L<http://cpanratings.perl.org/d/Games-Mastermind-Cracker>
 
 =item * RT: CPAN's request tracker
 
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Games-Mastermind-Solver>
+L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Games-Mastermind-Cracker>
 
 =item * Search CPAN
 
-L<http://search.cpan.org/dist/Games-Mastermind-Solver>
+L<http://search.cpan.org/dist/Games-Mastermind-Cracker>
 
 =back
 

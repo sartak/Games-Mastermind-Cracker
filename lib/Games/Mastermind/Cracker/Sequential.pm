@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
-package Games::Mastermind::Solver::Sequential;
+package Games::Mastermind::Cracker::Sequential;
 use Moose;
-extends 'Games::Mastermind::Solver';
+extends 'Games::Mastermind::Cracker';
 
 sub make_guess {
     my $self = shift;
@@ -49,7 +49,7 @@ sub increment_guess {
 
 =head1 NAME
 
-Games::Mastermind::Solver::Sequential - guess every code in order
+Games::Mastermind::Cracker::Sequential - guess every code in order
 
 =cut
 
