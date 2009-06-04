@@ -1,6 +1,8 @@
 package Games::Mastermind::Cracker;
 use Moose;
 
+our $VERSION = '0.02';
+
 has holes => (
     is      => 'ro',
     isa     => 'Int',
@@ -183,17 +185,11 @@ sub score {
     return ($black, $white);
 }
 
+1;
+
 =head1 NAME
 
 Games::Mastermind::Cracker - quickly crack Mastermind
-
-=head1 VERSION
-
-Version 0.02 released 01 Dec 07
-
-=cut
-
-our $VERSION = '0.02';
 
 =head1 SYNOPSIS
 
@@ -385,6 +381,4 @@ This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
 
 =cut
-
-1;
 
