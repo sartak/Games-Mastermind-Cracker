@@ -1,4 +1,3 @@
-#!perl
 package Games::Mastermind::Cracker;
 use Moose;
 

@@ -1,4 +1,3 @@
-#!/usr/bin/env perl
 package Games::Mastermind::Cracker::Random;
 use Moose;
 extends 'Games::Mastermind::Cracker';

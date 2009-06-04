@@ -1,4 +1,3 @@
-#!/usr/bin/env perl
 package Games::Mastermind::Cracker::Sequential;
 use Moose;
 extends 'Games::Mastermind::Cracker';

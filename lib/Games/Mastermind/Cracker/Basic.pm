@@ -1,4 +1,3 @@
-#!/usr/bin/env perl
 package Games::Mastermind::Cracker::Basic;
 use Moose;
 
