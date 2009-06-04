@@ -337,42 +337,6 @@ L<Games::Mastermind>, L<Games::Mastermind::Solver>
 
 Shawn M Moore, C<< <sartak at gmail.com> >>
 
-=head1 BUGS
-
-No known bugs.
-
-Please report any bugs through RT: email
-C<bug-games-mastermind-cracker at rt.cpan.org>, or browse
-L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Games-Mastermind-Cracker>.
-
-=head1 SUPPORT
-
-You can find this documentation for this module with the perldoc command.
-
-    perldoc Games::Mastermind::Cracker
-
-You can also look for information at:
-
-=over 4
-
-=item * AnnoCPAN: Annotated CPAN documentation
-
-L<http://annocpan.org/dist/Games-Mastermind-Cracker>
-
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/Games-Mastermind-Cracker>
-
-=item * RT: CPAN's request tracker
-
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Games-Mastermind-Cracker>
-
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/Games-Mastermind-Cracker>
-
-=back
-
 =head1 COPYRIGHT AND LICENSE
 
 Copyright 2007-2009 Shawn M Moore.
