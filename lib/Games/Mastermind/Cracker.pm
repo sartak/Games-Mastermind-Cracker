@@ -1,7 +1,7 @@
 package Games::Mastermind::Cracker;
 use Moose;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 has holes => (
     is      => 'ro',
